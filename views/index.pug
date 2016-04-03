@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+  head
+    title= pageTitle
+  body
+    h1 University Finder
+    form(action="/" method="post")
+      div 
+        label(for="#latitude") Latitude  
+        input#latitude(type="text" name="latitude" value= latitude)
+      div
+        label(for="#longitude") Longitude  
+        input#longitude(type="text" name="longitude" value= longitude)
+      button(type="submit") Find
+    if results
+      h2 Showing Results for #{latitude}, #{longitude}
+      
+      each result in results
+        div
+          h3 #{result.key}
+          div
+            strong Distance: 
+            | #{result.distance}
+            |  miles
+          div
+            strong Coordinates: 
+            | #{result.latitude}
+            | , 
+            | #{result.longitude}
+            | (
+            a(href="https://www.openstreetmap.org/#map=18/"+result.latitude+"/"+result.longitude) Map
+            | )
